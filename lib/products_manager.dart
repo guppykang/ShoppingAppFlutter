@@ -49,7 +49,7 @@ class _ProductManagerState extends State<Products_Manager> {
           },
         ),
       ),
-      Products()
+      Products(_products)
     ]);
   }
 }
