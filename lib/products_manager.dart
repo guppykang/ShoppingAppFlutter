@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './products.dart';
+import './product_control.dart';
 
 class Products_Manager extends StatefulWidget {
   final String startingProduct;
@@ -26,10 +27,17 @@ class _ProductManagerState extends State<Products_Manager> {
         .startingProduct); //the property widget is able to access the properties that were cerated in the stateful widget that state is linked to
   }
 
+  void _addProduct(String product) {
+    setState(() {
+      //set state method will call the build method again after the state is changed in order to make sure all the widgets are correctly updated
+      _products.add(product);
+    });
+  }
+
   @override
+  //this is called whenever we call the setstate function to change the state of the state 
   void didUpdateWidget(Products_Manager oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
+    super.didUpdateWidget(oldWidget); 
   }
 
   @override
@@ -38,16 +46,8 @@ class _ProductManagerState extends State<Products_Manager> {
     return Column(children: [
       Container(
         margin: EdgeInsets.all(10.0),
-        child: RaisedButton(
-          color: Theme.of(context).primaryColor,
-          child: Text("Add Product"),
-          onPressed: () {
-            setState(() {
-              //set state method will call the build method again after the state is changed in order to make sure all the widgets are correctly updated
-              _products.add("hi mom");
-            });
-          },
-        ),
+        //we can pass in functions into a widget that is in another level 
+        child: ProductControl(_addProduct),
       ),
       Products(_products)
     ]);
