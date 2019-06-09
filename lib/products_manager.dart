@@ -6,7 +6,7 @@ import './product_control.dart';
 class Products_Manager extends StatefulWidget {
   final String startingProduct;
 
-  Products_Manager({this.startingProduct = "sweets tester"});
+  Products_Manager({this.startingProduct});
 
   @override
   State<StatefulWidget> createState() {
@@ -23,8 +23,11 @@ class _ProductManagerState extends State<Products_Manager> {
   void initState() {
     super.initState();
 
-    _products.add(widget
-        .startingProduct); //the property widget is able to access the properties that were cerated in the stateful widget that state is linked to
+    //we can use this keyword widget. It is getting a reference to the current configuration of the Products_Manger state
+    if(widget.startingProduct != null){
+      _products.add(widget.startingProduct);
+    }
+     //the property widget is able to access the properties that were cerated in the stateful widget that state is linked to
   }
 
   void _addProduct(String product) {
@@ -49,7 +52,7 @@ class _ProductManagerState extends State<Products_Manager> {
         //we can pass in functions into a widget that is in another level 
         child: ProductControl(_addProduct),
       ),
-      Products(_products)
+      Expanded( child: Products(_products))
     ]);
   }
 }
