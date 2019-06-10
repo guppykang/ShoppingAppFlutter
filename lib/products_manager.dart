@@ -4,7 +4,7 @@ import './products.dart';
 import './product_control.dart';
 
 class Products_Manager extends StatefulWidget {
-  final String startingProduct;
+  final Map<String, String> startingProduct;
 
   Products_Manager({this.startingProduct});
 
@@ -16,7 +16,7 @@ class Products_Manager extends StatefulWidget {
 }
 
 class _ProductManagerState extends State<Products_Manager> {
-  List<String> _products = [];
+  List<Map<String, String>> _products = [];
 
   //this function is created whenever we create the product manager state object
   @override
@@ -30,7 +30,7 @@ class _ProductManagerState extends State<Products_Manager> {
      //the property widget is able to access the properties that were cerated in the stateful widget that state is linked to
   }
 
-  void _addProduct(String product) {
+  void _addProduct(Map<String, String> product) {
     setState(() {
       //set state method will call the build method again after the state is changed in order to make sure all the widgets are correctly updated
       _products.add(product);
