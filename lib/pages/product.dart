@@ -26,7 +26,7 @@ class ProductPage extends StatelessWidget {
                 child: RaisedButton(
                   color: Theme.of(context).accentColor,
                   child: Text("Back"),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Navigator.pop(context, true),
                 ),
               )
             ],
