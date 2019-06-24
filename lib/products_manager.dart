@@ -17,6 +17,7 @@ class Products_Manager extends StatefulWidget {
 
 class _ProductManagerState extends State<Products_Manager> {
   List<Map<String, String>> _products = [];
+  int numOfItems = 0;
 
   //this function is created whenever we create the product manager state object
   @override
@@ -37,6 +38,19 @@ class _ProductManagerState extends State<Products_Manager> {
     });
   }
 
+  void _removeProduct (int index) {
+    setState(() {
+      _products.removeAt(index);
+    });
+  }
+
+  void _incrementCount(){
+    numOfItems++;
+  }
+
+  String _getNum() {
+    return (numOfItems+1).toString();
+  }
   @override
   //this is called whenever we call the setstate function to change the state of the state 
   void didUpdateWidget(Products_Manager oldWidget) {
@@ -50,9 +64,9 @@ class _ProductManagerState extends State<Products_Manager> {
       Container(
         margin: EdgeInsets.all(10.0),
         //we can pass in functions into a widget that is in another level 
-        child: ProductControl(_addProduct),
+        child: ProductControl(_addProduct, _incrementCount, _getNum),
       ),
-      Expanded( child: Products(_products))
+      Expanded( child: Products(_products, _removeProduct))
     ]);
   }
 }
